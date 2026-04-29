@@ -1,0 +1,993 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Vaibhavi Fadke — Developer</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Cormorant+Garamond:ital,wght@0,300;0,600;1,300;1,600&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet"/>
+<style>
+:root{
+  --cream:#F6EEE3;
+  --cream2:#EDE0CC;
+  --cream3:#DFCDb2;
+  --maroon:#7B1D23;
+  --maroon2:#9E2D34;
+  --maroon3:#C47A7E;
+  --dark:#1A0F0E;
+  --mid:#5A3530;
+  --light:#9A7570;
+}
+
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  background:var(--cream);
+  color:var(--dark);
+  font-family:'DM Sans',sans-serif;
+  font-weight:300;
+  overflow-x:hidden;
+}
+
+/* ── NAV ── */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:500;
+  display:flex;justify-content:space-between;align-items:center;
+  padding:1.2rem 4rem;
+  background:rgba(246,238,227,.94);
+  backdrop-filter:blur(18px);
+  border-bottom:1px solid rgba(123,29,35,.08);
+}
+.nav-logo{
+  font-family:'Playfair Display',serif;
+  font-size:1.1rem;font-weight:900;color:var(--maroon);
+}
+.nav-links{display:flex;gap:2.6rem;list-style:none;align-items:center;}
+.nav-links a{
+  text-decoration:none;font-size:.68rem;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--mid);transition:color .3s;
+}
+.nav-links a:hover{color:var(--maroon);}
+.nav-resume{
+  padding:.5rem 1.3rem;
+  border:1px solid var(--maroon);
+  color:var(--maroon)!important;
+  font-size:.63rem!important;
+  letter-spacing:.14em!important;
+  transition:all .3s!important;
+}
+.nav-resume:hover{background:var(--maroon);color:var(--cream)!important;}
+
+/* ══════════════════════════════════
+   HERO — two column: left text / right big photo
+══════════════════════════════════ */
+.hero{
+  min-height:100vh;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  align-items:center;
+  padding-top:40px;
+  overflow:hidden;
+  position:relative;
+}
+
+/* soft radial glow behind photo */
+.hero::after{
+  content:'';
+  position:absolute;
+  right:0;top:0;bottom:0;
+  width:55%;
+  background:radial-gradient(ellipse at 80% 40%, rgba(196,122,126,.13) 0%, transparent 70%);
+  pointer-events:none;
+  z-index:0;
+}
+
+/* ── left text ── */
+.hero-left{
+  padding:0 3rem 0 5rem;
+  display:flex;flex-direction:column;
+  justify-content:center;
+  z-index:2;
+  animation:up .9s ease both;
+}
+
+.hero-eyebrow{
+  font-size:.62rem;letter-spacing:.28em;text-transform:uppercase;
+  color:var(--maroon);margin-bottom:1.5rem;
+  display:flex;align-items:center;gap:.7rem;
+}
+.hero-eyebrow::before{
+  content:'';display:inline-block;
+  width:22px;height:1px;background:var(--maroon);
+}
+
+.hero-name{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(3.2rem,5.5vw,5.5rem);
+  font-weight:1000;line-height:.95;
+  color:var(--dark);
+  margin-bottom:1.8rem;
+  letter-spacing:-.02em;
+}
+.hero-name .line2{
+  font-style:italic;
+  color:var(--maroon);
+  display:block;
+  margin-top:.15em;
+}
+
+.hero-tagline{
+  font-size:.92rem;line-height:1.95;
+  color:var(--mid);
+  max-width:360px;
+  margin-bottom:2.6rem;
+  padding-left:1rem;
+  border-left:2px solid var(--maroon3);
+}
+
+.btns{display:flex;gap:.9rem;flex-wrap:wrap;}
+.btn-primary{
+  padding:.85rem 2rem;
+  background:var(--maroon);color:var(--cream);
+  font-family:'DM Sans',sans-serif;font-size:.68rem;
+  letter-spacing:.17em;text-transform:uppercase;
+  text-decoration:none;border:none;
+  transition:background .3s,transform .2s;
+  display:inline-flex;align-items:center;gap:.5rem;
+}
+.btn-primary:hover{background:var(--maroon2);transform:translateY(-2px);}
+.btn-outline{
+  padding:.85rem 2rem;
+  background:transparent;color:var(--maroon);
+  border:1px solid var(--maroon);
+  font-family:'DM Sans',sans-serif;font-size:.68rem;
+  letter-spacing:.17em;text-transform:uppercase;
+  text-decoration:none;
+  transition:all .3s;
+  display:inline-flex;align-items:center;gap:.5rem;
+}
+.btn-outline:hover{background:var(--maroon);color:var(--cream);}
+
+/* ── right photo ── */
+.hero-right{
+  position:relative;
+  height:100vh;
+  display:flex;align-items:center;justify-content:center;
+  z-index:2;
+  animation:up 1s ease .2s both;
+}
+
+/* big photo frame */
+.stage{
+  position:relative;
+  width:420px;
+  height:520px;
+  left: -150px;
+}
+
+/* corner brackets */
+.stage::before{
+  content:'';position:absolute;
+  top:-14px;left:-14px;
+  width:42px;height:42px;
+  border-top:2px solid var(--maroon);
+  border-left:2px solid var(--maroon);
+  z-index:3;
+}
+.stage::after{
+  content:'';position:absolute;
+  bottom:-14px;right:-14px;
+  width:42px;height:42px;
+  border-bottom:2px solid var(--maroon);
+  border-right:2px solid var(--maroon);
+  z-index:3;
+}
+
+/* photo */
+.photo-wrap{
+  width:100%;height:100%;
+  position:relative;z-index:2;
+  overflow:hidden;
+}
+.photo-wrap img{
+  width:100%;height:100%;
+  object-fit:cover;
+  object-position:top center;
+  display:block;
+}
+
+/* placeholder */
+.photo-ph{
+  width:100%;height:100%;
+  /* background:var(--cream2); */
+  display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  gap:1rem;
+  /* border:1px dashed var(--maroon3); */
+}
+.photo-ph svg{width:72px;height:52px;opacity:.25;}
+.photo-ph p{
+  font-size:.65rem;letter-spacing:.13em;
+  text-transform:uppercase;color:var(--light);opacity:.5;
+}
+
+/* ─────────────────────────────
+   SVG arrows + tags
+   
+   SVG is absolutely positioned,
+   extending well outside the stage.
+   ViewBox: 0 0 700 700
+   Stage (photo) sits at roughly:
+     x: 160–540, y: 90–610
+   
+   Arrow origins (tag positions):
+     A1 (top-left):    tag at ~(30, 50)
+     A2 (right):       tag at ~(610,300)
+     A3 (bottom-left): tag at ~(30, 600)
+───────────────────────────────*/
+.arrows-svg{
+  position:absolute;
+  top:50%;left:35%;
+  transform:translate(-50%,-45%);
+  width:700px;height:700px;
+  pointer-events:none;
+  z-index:10;
+  overflow:visible;
+}
+
+/* ── tag labels ── */
+.tag{
+  position:absolute;
+  z-index:11;
+  pointer-events:none;
+  animation:up 1.2s ease both;
+}
+.tag-inner{
+  display:flex;align-items:center;gap:.5rem;
+  font-size:.65rem;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--mid);
+  white-space:nowrap;
+  font-family:'DM Sans',sans-serif;
+}
+.tag-dot{
+  width:6px;height:6px;border-radius:50%;
+  background:var(--maroon);flex-shrink:0;
+}
+
+/* tag positions relative to .hero-right (not .stage) */
+/* A1 top-left of photo */
+.tag-1{
+  top:calc(50% - 180px - 40px);
+  left:calc(50% - 240px - 250px);
+  animation-delay:.4s;
+}
+/* A2 right of photo */
+.tag-2{
+  top:calc(50% - 20px);
+  right:calc(50% - 200px - 40px);
+  animation-delay:.55s;
+}
+/* A3 bottom-left of photo */
+.tag-3{
+  bottom:calc(50% - 250px - 20px);
+  left:calc(50% - 350px - 160px);
+  animation-delay:.7s;
+}
+
+/* scroll cue */
+.scroll-c{
+  position:absolute;bottom:2rem;left:50%;
+  transform:translateX(-50%);
+  display:flex;flex-direction:column;align-items:center;gap:.4rem;
+  z-index:5;
+}
+.scroll-c span{
+  font-size:.55rem;letter-spacing:.24em;
+  text-transform:uppercase;color:var(--light);
+}
+.scroll-line{
+  width:1px;height:38px;
+  background:linear-gradient(to bottom,var(--maroon),transparent);
+  animation:pulse 2s ease infinite;
+}
+
+/* ══ SNAPSHOT BAR ══ */
+.snapshot{
+  background:var(--dark);
+  display:grid;grid-template-columns:repeat(4,1fr);
+}
+.snap-item{
+  padding:1.8rem 2rem;
+  border-right:1px solid rgba(255,255,255,.06);
+  display:flex;flex-direction:column;gap:.4rem;
+}
+.snap-item:last-child{border-right:none;}
+.snap-label{font-size:.58rem;letter-spacing:.22em;text-transform:uppercase;color:var(--maroon3);}
+.snap-val{font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;color:var(--cream);}
+.snap-detail{font-size:.7rem;color:#aaa4a4;line-height:1.5;}
+
+/* ══ ABOUT ══ */
+.about{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:5rem;padding:6rem 5rem;align-items:center;
+}
+.lbl{
+  font-size:.61rem;letter-spacing:.28em;text-transform:uppercase;
+  color:var(--maroon);margin-bottom:1rem;
+  display:flex;align-items:center;gap:.8rem;
+}
+.lbl::after{content:'';display:inline-block;width:32px;height:1px;background:var(--maroon);}
+.sh{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(1.7rem,2.8vw,2.4rem);
+  font-weight:700;line-height:1.2;
+  color:var(--dark);margin-bottom:1.5rem;
+}
+.sh em{font-style:italic;color:var(--maroon);}
+.at{font-size:.88rem;line-height:1.95;color:var(--mid);margin-bottom:1rem;}
+.ar{background:var(--cream2);padding:2.6rem;position:relative;}
+.ar::before{
+  content:'"';font-family:'Playfair Display',serif;
+  font-size:6.5rem;color:var(--maroon);opacity:.1;
+  position:absolute;top:-.4rem;left:.9rem;line-height:1;
+}
+.qt{
+  font-family:'Cormorant Garamond',serif;
+  font-style:italic;font-size:1.25rem;line-height:1.75;
+  color:var(--dark);margin-bottom:1rem;
+}
+.qa{font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;color:var(--light);}
+
+/* ══ EXPERIENCE ══ */
+.exp-sec{padding:6rem 5rem;background:var(--dark);}
+.exp-sec .lbl{color:var(--maroon3);}
+.exp-sec .lbl::after{background:var(--maroon3);}
+.exp-sec .sh{color:var(--cream);}
+.exp-list{display:flex;flex-direction:column;gap:3px;}
+
+.ei{
+  background:#1F1211;
+  border-left:3px solid #2E1715;
+  overflow:hidden;
+  transition:border-color .3s,background .3s;
+  cursor:pointer;
+}
+.ei.open,.ei:hover{border-left-color:var(--maroon);background:#271614;}
+.er{
+  display:grid;
+  grid-template-columns:58px 1fr auto auto;
+  align-items:center;gap:1.4rem;
+  padding:1.5rem 1.8rem;
+}
+.elogo{
+  width:48px;height:48px;border-radius:9px;
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Playfair Display',serif;font-weight:900;
+  font-size:.95rem;color:#fff;flex-shrink:0;
+}
+.l-sp{background:#0F3460;}
+.l-od{background:#145A32;}
+.l-vu{background:#4A235A;}
+.em2{display:flex;flex-direction:column;gap:.22rem;}
+.etit{font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;color:var(--cream);}
+.eco{font-size:.74rem;color:var(--maroon3);letter-spacing:.05em;}
+.eper{
+  font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--light);background:#2A1614;padding:.22rem .7rem;white-space:nowrap;
+}
+.ech{color:var(--maroon3);font-size:.9rem;transition:transform .4s;padding-left:.35rem;}
+.ei.open .ech{transform:rotate(180deg);}
+.ed{max-height:0;overflow:hidden;transition:max-height .5s cubic-bezier(.4,0,.2,1);}
+.ei.open .ed{max-height:800px;}
+.edi{
+  padding:0 1.8rem 2.2rem 5rem;
+  display:grid;grid-template-columns:1.2fr 1fr;gap:2.2rem;
+}
+.dlbl{
+  font-size:.58rem;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--maroon3);margin-bottom:.8rem;display:block;
+}
+.ebl{list-style:none;display:flex;flex-direction:column;gap:.55rem;}
+.ebl li{
+  font-size:.8rem;line-height:1.7;color:#9A8584;
+  padding-left:.95rem;position:relative;
+}
+.ebl li::before{content:'—';position:absolute;left:0;color:var(--maroon);}
+.estk{display:flex;flex-wrap:wrap;gap:.4rem;margin-bottom:1.2rem;}
+.etag{
+  font-size:.59rem;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--maroon3);border:1px solid rgba(196,122,126,.25);padding:.2rem .58rem;
+}
+.ehl{
+  background:rgba(123,29,35,.15);border-left:2px solid var(--maroon);
+  padding:.8rem 1rem;font-size:.78rem;line-height:1.7;
+  color:#B09090;font-style:italic;margin-top:.5rem;
+}
+
+/* ══ PROJECTS ══ */
+.proj-sec{padding:6rem 5rem;}
+
+.pc{
+  background:var(--cream2);
+  cursor:pointer;
+  transition:transform .3s,box-shadow .3s;
+  position:relative;overflow:hidden;
+  max-width:640px;
+}
+.pc::after{
+  content:'Click to explore →';
+  position:absolute;bottom:0;left:0;right:0;
+  background:var(--maroon);color:var(--cream);
+  font-size:.63rem;letter-spacing:.16em;text-transform:uppercase;
+  padding:.62rem;text-align:center;
+  transform:translateY(100%);transition:transform .3s;
+}
+.pc:hover{transform:translateY(-4px);box-shadow:0 14px 44px rgba(123,29,35,.13);}
+.pc:hover::after{transform:translateY(0);}
+.pt{padding:1.8rem 1.8rem 1.1rem;display:flex;align-items:center;justify-content:space-between;}
+.plogo{width:50px;height:50px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.6rem;}
+.parr{font-size:1.2rem;color:var(--maroon);opacity:.32;transition:opacity .3s,transform .3s;}
+.pc:hover .parr{opacity:1;transform:translate(3px,-3px);}
+.pb{padding:0 1.8rem 1.3rem;}
+.pname{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;color:var(--dark);margin-bottom:.4rem;}
+.ptag{font-size:.8rem;line-height:1.75;color:var(--mid);margin-bottom:1rem;}
+.ppills{display:flex;flex-wrap:wrap;gap:.36rem;}
+.pp{
+  font-size:.59rem;letter-spacing:.1em;text-transform:uppercase;
+  background:var(--cream);color:var(--mid);
+  padding:.24rem .58rem;border:1px solid rgba(123,29,35,.1);
+}
+.pf{
+  border-top:1px solid var(--cream3);
+  padding:.8rem 1.8rem;
+  display:flex;justify-content:space-between;align-items:center;
+}
+.pstat{font-size:.61rem;letter-spacing:.12em;text-transform:uppercase;color:var(--maroon);}
+.pyr{font-size:.61rem;color:var(--light);}
+
+/* ══ SKILLS ══ */
+.sk-sec{padding:6rem 5rem;background:var(--cream2);}
+.sk-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.8rem;}
+.sg{border-top:2px solid var(--maroon);padding-top:1.2rem;}
+.sgt{font-size:.61rem;letter-spacing:.22em;text-transform:uppercase;color:var(--maroon);margin-bottom:.85rem;}
+.chips{display:flex;flex-wrap:wrap;gap:.4rem;}
+.chip{
+  font-size:.75rem;color:var(--mid);background:var(--cream);
+  padding:.34rem .78rem;border:1px solid rgba(123,29,35,.1);
+  transition:all .3s;cursor:default;
+}
+.chip:hover{background:var(--maroon);color:var(--cream);border-color:var(--maroon);}
+
+/* CERTS */
+.cer-sec{padding:2.5rem 5rem;display:flex;gap:1.4rem;}
+.cc{
+  flex:1;border:1px solid var(--cream3);padding:1.6rem;
+  display:flex;gap:1rem;align-items:flex-start;transition:border-color .3s;
+}
+.cc:hover{border-color:var(--maroon);}
+.ci{
+  width:34px;height:34px;background:var(--maroon);
+  display:flex;align-items:center;justify-content:center;
+  color:var(--cream);flex-shrink:0;font-size:.8rem;
+}
+.ct{font-family:'Playfair Display',serif;font-size:.9rem;font-weight:700;color:var(--dark);margin-bottom:.3rem;}
+.cis{font-size:.7rem;color:var(--light);}
+
+/* CONTACT */
+.con-sec{
+  padding:7rem 5rem;background:var(--maroon);
+  text-align:center;position:relative;overflow:hidden;
+}
+.con-sec::before{
+  content:'VAIBHAVI';
+  font-family:'Playfair Display',serif;
+  font-size:13vw;font-weight:900;
+  color:rgba(255,255,255,.04);
+  position:absolute;top:50%;left:50%;
+  transform:translate(-50%,-50%);white-space:nowrap;pointer-events:none;
+}
+.con-sec .lbl{color:var(--maroon3);justify-content:center;}
+.con-sec .lbl::after{background:var(--maroon3);}
+.ch{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(2.2rem,4.5vw,4rem);
+  font-weight:900;color:var(--cream);line-height:1.1;margin-bottom:.8rem;
+}
+.ch em{font-style:italic;opacity:.6;}
+.csub{font-size:.82rem;color:rgba(246,238,227,.5);margin-bottom:2.2rem;}
+.cemail{
+  display:inline-block;font-family:'Cormorant Garamond',serif;
+  font-size:1.4rem;color:var(--cream);text-decoration:none;
+  border-bottom:1px solid rgba(246,238,227,.32);padding-bottom:.25rem;
+  margin-bottom:2.6rem;transition:border-color .3s;
+}
+.cemail:hover{border-color:var(--cream);}
+.csoc{display:flex;justify-content:center;gap:2.4rem;}
+.csl{
+  font-size:.66rem;letter-spacing:.2em;text-transform:uppercase;
+  color:rgba(246,238,227,.46);text-decoration:none;transition:color .3s;
+}
+.csl:hover{color:var(--cream);}
+
+footer{
+  background:var(--dark);padding:1.3rem 5rem;
+  display:flex;justify-content:center;align-items:center; text-align: center;
+}
+footer p{font-size:.66rem;color:#4A2A27;letter-spacing:.05em; display: flex; justify-content: center;}
+
+/* MODAL */
+.mbg{
+  position:fixed;inset:0;background:rgba(26,15,14,.72);
+  backdrop-filter:blur(7px);z-index:800;
+  opacity:0;pointer-events:none;transition:opacity .35s;
+}
+.mbg.show{opacity:1;pointer-events:all;}
+.modal{
+  position:fixed;top:50%;left:50%;
+  transform:translate(-50%,-47%);
+  width:min(680px,92vw);max-height:88vh;overflow-y:auto;
+  background:var(--cream);z-index:900;
+  opacity:0;transition:opacity .35s,transform .35s;
+}
+.mbg.show .modal{opacity:1;transform:translate(-50%,-50%);}
+.mh{background:var(--dark);padding:2.2rem 2.2rem 1.8rem;position:relative;}
+.mcl{
+  position:absolute;top:1.3rem;right:1.3rem;
+  background:none;border:none;color:var(--maroon3);
+  font-size:1.2rem;cursor:pointer;transition:color .2s;
+}
+.mcl:hover{color:var(--cream);}
+.ml{width:54px;height:54px;border-radius:11px;display:flex;align-items:center;justify-content:center;font-size:1.8rem;margin-bottom:1rem;}
+.mt{font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:900;color:var(--cream);margin-bottom:.4rem;}
+.mst{font-size:.75rem;color:var(--maroon3);letter-spacing:.07em;}
+.mbody{padding:2.2rem;}
+.msec{margin-bottom:1.8rem;}
+.msec h4{
+  font-size:.6rem;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--maroon);margin-bottom:.85rem;padding-bottom:.4rem;
+  border-bottom:1px solid var(--cream2);
+}
+.mtxt{font-size:.86rem;line-height:1.85;color:var(--mid);}
+.mbl{list-style:none;display:flex;flex-direction:column;gap:.52rem;}
+.mbl li{font-size:.83rem;line-height:1.7;color:var(--mid);padding-left:1.1rem;position:relative;}
+.mbl li::before{content:'↗';position:absolute;left:0;color:var(--maroon);font-size:.7rem;}
+.mpills{display:flex;flex-wrap:wrap;gap:.45rem;}
+.mpill{
+  font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;
+  background:var(--cream2);color:var(--mid);
+  padding:.3rem .75rem;border:1px solid rgba(123,29,35,.12);
+}
+.mlinks{display:flex;gap:.9rem;margin-top:1.8rem;}
+.mlink{
+  padding:.7rem 1.5rem;font-size:.67rem;letter-spacing:.15em;
+  text-transform:uppercase;text-decoration:none;transition:all .3s;cursor:pointer;
+}
+.mlink.pri{background:var(--maroon);color:var(--cream);}
+.mlink.pri:hover{background:var(--maroon2);}
+.mlink.sec{border:1px solid var(--maroon);color:var(--maroon);}
+.mlink.sec:hover{background:var(--maroon);color:var(--cream);}
+
+/* ── animations ── */
+@keyframes up{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+@keyframes pulse{0%,100%{opacity:.3}50%{opacity:1}}
+.rev{opacity:0;transform:translateY(28px);transition:opacity .75s ease,transform .75s ease;}
+.rev.vis{opacity:1;transform:translateY(0);}
+
+/* ── responsive ── */
+@media(max-width:960px){
+  nav{padding:1rem 1.5rem;}.nav-links{gap:1.4rem;}
+  .hero{grid-template-columns:1fr;min-height:auto;}
+  .hero-left{padding:5rem 2rem 2rem;text-align:center;align-items:center;}
+  .hero-tagline{border-left:none;padding-left:0;}
+  .hero-right{height:70vw;min-height:400px;}
+  .stage{width:260px;height:380px;}
+  .snapshot{grid-template-columns:repeat(2,1fr);}
+  .about{grid-template-columns:1fr;padding:4rem 2rem;}
+  .exp-sec,.proj-sec,.sk-sec,.cer-sec,.con-sec{padding:4rem 2rem;}
+  .edi{grid-template-columns:1fr;padding-left:1.2rem;}
+  .sk-grid{grid-template-columns:1fr 1fr;}
+  .cer-sec{flex-direction:column;}
+  footer{flex-direction:column;gap:.4rem;text-align:center;padding:1.2rem 2rem;}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">VF.</div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="VaibhaviFadkeResume__2_.pdf" download class="nav-resume">↓ Resume</a></li>
+  </ul>
+</nav>
+
+<!-- ══ HERO ══ -->
+<section class="hero">
+
+  <!-- LEFT — text -->
+  <div class="hero-left">
+    <p class="hero-eyebrow">Available for Full-time &nbsp;·&nbsp; Panjim, Goa</p>
+
+    <h1 class="hero-name">
+      Hi, I'm
+      <span class="line2">Vaibhavi<br/>Fadke.</span>
+    </h1>
+
+    <p class="hero-tagline">
+      Full-Stack &amp; Backend Developer with real internship experience
+      in Go, Angular &amp; ML. CE Graduate with Honors in AI/ML — 2025.
+    </p>
+
+    <div class="btns">
+      <a href="#projects" class="btn-outline">
+        See My Work
+      </a>
+      <a href="#contact" class="btn-outline">
+        Get In Touch
+      </a>
+    </div>
+  </div>
+
+  <!-- RIGHT — big photo with curved arrows -->
+  <div class="hero-right">
+
+    <!-- ── CURVED SVG ARROWS ──
+         ViewBox 700×700. Stage (photo) centre ≈ (350,350).
+         Photo edges: left≈160, right≈540, top≈90, bottom≈610.
+
+         Arrow 1 — starts top-left of canvas, curves down-right to upper-left of photo
+         Arrow 2 — starts right of canvas, curves left to right edge of photo
+         Arrow 3 — starts bottom-left of canvas, curves up-right to lower-left of photo
+    -->
+    <svg class="arrows-svg"
+         viewBox="0 0 700 700"
+         xmlns="http://www.w3.org/2000/svg"
+         fill="none"
+         overflow="visible">
+
+      <!-- defs: arrowhead marker -->
+      <defs>
+        <marker id="arr" markerWidth="7" markerHeight="7"
+                refX="4" refY="3.5" orient="auto">
+          <path d="M0,0.5 L6,3.5 L0,6.5" stroke="#7B1D23" stroke-width="1.2"
+                fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+        </marker>
+      </defs>
+
+      <!-- Arrow 1: top-left → upper-left of photo -->
+      <path d="M 25,90 C 100,80 115,80 183,155"
+            stroke="#C47A7E" stroke-width="1.4"
+            stroke-linecap="round"
+            marker-end="url(#arr)"
+            opacity="0.85"/>
+
+      <!-- Arrow 2: right → right edge of photo -->
+      <path d="M 600,290 C 590,280 560,278 542,290"
+            stroke="#C47A7E" stroke-width="1.4"
+            stroke-linecap="round"
+            marker-end="url(#arr)"
+            opacity="0.85"/>
+
+      <!-- Arrow 3: bottom-left → lower-left of photo -->
+      <path d="M 6,590 C 100,620 140,600 162,565"
+            stroke="#C47A7E" stroke-width="1.4"
+            stroke-linecap="round"
+            marker-end="url(#arr)"
+            opacity="0.85"/>
+    </svg>
+
+    <!-- Tag 1 — top-left -->
+    <div class="tag tag-1">
+      <div class="tag-inner">
+        <span class="tag-dot"></span>
+        Backend Dev
+      </div>
+    </div>
+
+    <!-- Tag 2 — right -->
+    <div class="tag tag-2">
+      <div class="tag-inner">
+        <span class="tag-dot"></span>
+        ML Enthusiast
+      </div>
+    </div>
+
+    <!-- Tag 3 — bottom-left -->
+    <div class="tag tag-3">
+      <div class="tag-inner">
+        <span class="tag-dot"></span>
+        Curious Mind
+      </div>
+    </div>
+
+    <!-- PHOTO -->
+    <div class="stage">
+      <div class="photo-wrap">
+            <div class="photo-ph">                         
+            <img src="C:\Users\fadke\Downloads\VaibhaviPhotoPortfolio-removebg-preview.png"               
+                 alt="Vaibhavi Fadke">  
+            </div>            
+      </div>
+    </div>
+
+   
+
+  </div>
+</section>
+
+<!-- ══ SNAPSHOT BAR ══ -->
+<div class="snapshot">
+  <div class="snap-item">
+    <span class="snap-label">Currently</span>
+    <span class="snap-val">Seeking Opportunities</span>
+    <span class="snap-detail">Full-time Software Developer · Open to relocation</span>
+  </div>
+  <div class="snap-item">
+    <span class="snap-label">Most Recent Role</span>
+    <span class="snap-val">Backend Intern @ Spintly</span>
+    <span class="snap-detail">Go · Kafka · Microservices · RSA-256 Auth</span>
+  </div>
+  <div class="snap-item">
+    <span class="snap-label">Strongest Stack</span>
+    <span class="snap-val">Go · Angular · Python</span>
+    <span class="snap-detail">Also: ASP.NET, Flask, REST APIs, SQL</span>
+  </div>
+  <div class="snap-item">
+    <span class="snap-label">Education</span>
+    <span class="snap-val">B.E. Computer Engg.</span>
+    <span class="snap-detail">Honors in AI/ML · PCCE, Goa · 2025</span>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section class="about rev" id="about">
+  <div>
+    <p class="lbl">Hey There</p>
+    <h2 class="sh">Developer by degree,<br/><em>builder by nature.</em></h2>
+    <p class="at">I'm a Computer Engineering graduate with Honors in AI/ML from Padre Conceicao College of Engineering, Goa (2025). I've worked across machine translation research, live product development, and backend microservices — all before my first full-time role.</p>
+    <p class="at">From training low-resource language models to fixing real client-facing bugs to building Go APIs with Kafka — I dive in and figure things out. Currently seeking full-time software development opportunities.</p>
+  </div>
+  <div class="ar">
+    <p class="qt">"Curious, problem-solver, and always excited to learn something new — that's how I approach every project and every challenge."</p>
+    <p class="qa">— Vaibhavi Fadke</p>
+  </div>
+</section>
+
+<!-- ══ EXPERIENCE ══ -->
+<section class="exp-sec" id="experience">
+  <p class="lbl">My Journey</p>
+  <h2 class="sh">Experience</h2>
+  <div class="exp-list">
+
+    <div class="ei rev" onclick="tog(this)">
+      <div class="er">
+        <div class="elogo l-sp">SP</div>
+        <div class="em2">
+          <div class="etit">Backend Developer Intern</div>
+          <div class="eco">Spintly · Fatorda, Goa</div>
+        </div>
+        <div class="eper">Feb 2026 – Apr 2026</div>
+        <div class="ech">▾</div>
+      </div>
+      <div class="ed"><div class="edi">
+        <div>
+          <span class="dlbl">What I Did</span>
+          <ul class="ebl">
+            <li>Built production REST APIs in Go within a microservices architecture</li>
+            <li>Integrated Apache Kafka for real-time message publishing between distributed services</li>
+            <li>Implemented RSA-256 asymmetric encryption for secure JWT-based user authentication</li>
+            <li>Documented all APIs with Swagger; built structured error handling</li>
+            <li>Built several mini projects around JWT authorization flows</li>
+          </ul>
+          <div class="ehl" style="margin-top:1rem;">Picked up Go on the job and shipped real production features within the first week of joining.</div>
+        </div>
+        <div>
+          <span class="dlbl">Tech Stack</span>
+          <div class="estk"><span class="etag">Go</span><span class="etag">Kafka</span><span class="etag">REST APIs</span><span class="etag">RSA-256</span><span class="etag">JWT</span><span class="etag">Microservices</span><span class="etag">Swagger</span></div>
+          <span class="dlbl" style="margin-top:1rem;display:block;">Context</span>
+          <div class="ehl">IoT access-control startup. Worked directly on the core API layer used in real deployments.</div>
+        </div>
+      </div></div>
+    </div>
+
+    <div class="ei rev" onclick="tog(this)" style="transition-delay:.1s">
+      <div class="er">
+        <div class="elogo l-od">OD</div>
+        <div class="em2">
+          <div class="etit">Junior Software Developer</div>
+          <div class="eco">Open Destinations · Panaji, Goa</div>
+        </div>
+        <div class="eper">Jun 2025 – Dec 2025</div>
+        <div class="ech">▾</div>
+      </div>
+      <div class="ed"><div class="edi">
+        <div>
+          <span class="dlbl">What I Did</span>
+          <ul class="ebl">
+            <li>Trained on ASP.NET, C#, Angular, AngularJS, jQuery, LINQ, SSMS and REST APIs</li>
+            <li>Transitioned to live project work — resolving real client-facing bugs and change requests</li>
+            <li>Fixed critical currency mismatch: displayed currency differed from logged-in agent's currency</li>
+            <li>Resolved payment failure redirections and critical UI/flow issues across the product</li>
+            <li>Managed code and version tracking using SVN and Jira</li>
+          </ul>
+          <div class="ehl" style="margin-top:1rem;">First industry role — got hands-on with a large legacy codebase and real client issues from day one.</div>
+        </div>
+        <div>
+          <span class="dlbl">Tech Stack</span>
+          <div class="estk"><span class="etag">ASP.NET</span><span class="etag">C#</span><span class="etag">Angular</span><span class="etag">AngularJS</span><span class="etag">jQuery</span><span class="etag">LINQ</span><span class="etag">SSMS</span><span class="etag">Jira</span><span class="etag">SVN</span></div>
+          <span class="dlbl" style="margin-top:1rem;display:block;">Context</span>
+          <div class="ehl">Travel-tech company — live product used by travel agents globally. Real bugs, real clients, real accountability.</div>
+        </div>
+      </div></div>
+    </div>
+
+    <div class="ei rev" onclick="tog(this)" style="transition-delay:.2s">
+      <div class="er">
+        <div class="elogo l-vu">VU</div>
+        <div class="em2">
+          <div class="etit">Machine Translation Intern</div>
+          <div class="eco">Vidyaapati, Goa University · Panaji, Goa</div>
+        </div>
+        <div class="eper">Jul 2024 – Aug 2024</div>
+        <div class="ech">▾</div>
+      </div>
+      <div class="ed"><div class="edi">
+        <div>
+          <span class="dlbl">What I Did</span>
+          <ul class="ebl">
+            <li>Built attention-based neural MT model for Konkani–Hindi (healthcare domain)</li>
+            <li>Tackled a low-resource language problem with limited training data</li>
+            <li>Evaluated multiple model configs using OpenNMT to optimise translation quality</li>
+            <li>Improved BLEU score from 5.48 → 10.89 — nearly doubling translation performance</li>
+          </ul>
+          <div class="ehl" style="margin-top:1rem;">Research internship during final year at Goa University — first real NLP problem on a regional language.</div>
+        </div>
+        <div>
+          <span class="dlbl">Tech Stack</span>
+          <div class="estk"><span class="etag">Python</span><span class="etag">OpenNMT</span><span class="etag">Attention Mechanism</span><span class="etag">NLP</span><span class="etag">BLEU</span></div>
+          <span class="dlbl" style="margin-top:1rem;display:block;">Context</span>
+          <div class="ehl">MeitY-backed language technology consortium — national-scale project involving multiple universities.</div>
+        </div>
+      </div></div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══ PROJECTS ══ -->
+<section class="proj-sec rev" id="projects">
+  <p class="lbl">What I've Built</p>
+  <h2 class="sh">Projects</h2>
+
+  <div class="pc" onclick="openM('nexevent')">
+    <div class="pt">
+      <div class="plogo" style="background:#FEF3E2;">🎪</div>
+      <div class="parr">↗</div>
+    </div>
+    <div class="pb">
+      <div class="pname">NexEvent — AI Driven Event Management System</div>
+      <div class="ptag">Full-stack AI-powered platform for event management. Vendors can be booked, themes auto-generated via LLaMA, and user feedback is classified using BiLSTM sentiment analysis (90% accuracy). Automated PDF reports included.</div>
+      <div class="ppills">
+        <span class="pp">Python</span><span class="pp">Flask</span><span class="pp">LLaMA</span>
+        <span class="pp">BiLSTM</span><span class="pp">Keras</span><span class="pp">Supabase</span>
+        <span class="pp">HTML/CSS/JS</span>
+      </div>
+    </div>
+    <div class="pf">
+      <span class="pstat">● Final Year Project</span>
+      <span class="pyr">2025</span>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section class="sk-sec rev" id="skills">
+  <p class="lbl">What I Work With</p>
+  <h2 class="sh">Skills</h2>
+  <div class="sk-grid">
+    <div class="sg"><p class="sgt">Languages</p><div class="chips"><span class="chip">Go</span><span class="chip">Python</span><span class="chip">JavaScript</span><span class="chip">C#</span><span class="chip">C</span><span class="chip">C++</span></div></div>
+    <div class="sg"><p class="sgt">Web & Frameworks</p><div class="chips"><span class="chip">Angular</span><span class="chip">AngularJS</span><span class="chip">ASP.NET</span><span class="chip">Flask</span><span class="chip">HTML</span><span class="chip">CSS</span><span class="chip">jQuery</span></div></div>
+    <div class="sg"><p class="sgt">Backend & APIs</p><div class="chips"><span class="chip">REST APIs</span><span class="chip">Swagger</span><span class="chip">Kafka</span><span class="chip">Microservices</span></div></div>
+    <div class="sg"><p class="sgt">Databases</p><div class="chips"><span class="chip">MySQL</span><span class="chip">SQL Server</span><span class="chip">Supabase</span></div></div>
+    <div class="sg"><p class="sgt">Security & Auth</p><div class="chips"><span class="chip">RSA-256</span><span class="chip">JWT</span><span class="chip">Token Auth</span><span class="chip">Asymmetric Enc.</span></div></div>
+    <div class="sg"><p class="sgt">ML & AI</p><div class="chips"><span class="chip">OpenNMT</span><span class="chip">BiLSTM</span><span class="chip">Keras</span><span class="chip">LLaMA</span><span class="chip">Attention Mech.</span></div></div>
+  </div>
+</section>
+
+<!-- CERTS -->
+<div class="cer-sec rev">
+  <div class="cc"><div class="ci">✦</div><div><p class="ct">Programming for Everybody (Python)</p><p class="cis">University of Michigan · Coursera · 2026</p></div></div>
+  <div class="cc"><div class="ci">✦</div><div><p class="ct">Cyber Security & Privacy</p><p class="cis">NPTEL · IIT Madras · 2024</p></div></div>
+</div>
+
+<!-- CONTACT -->
+<section class="con-sec rev" id="contact">
+  <p class="lbl">Get In Touch</p>
+  <h2 class="ch">Let's build<br/><em>something great.</em></h2>
+  <p class="csub">Open to full-time software development opportunities · Panjim, Goa, India</p>
+  <a href="mailto:fadkevaibhavi30@gmail.com" class="cemail">fadkevaibhavi30@gmail.com</a>
+  <div class="csoc">
+    <a href="https://linkedin.com/in/vaibhavi-fadke" target="_blank" class="csl">LinkedIn</a>
+    <a href="https://github.com/VaibhaviFadke" target="_blank" class="csl">GitHub</a>
+    <a href="tel:8669325224" class="csl">+91 86693 25224</a>
+  </div>
+</section>
+
+<footer>
+  <p>Designed & Built by Vaibhavi Fadke</p>
+</footer>
+
+<!-- MODAL -->
+<div class="mbg" id="MB" onclick="closeBg(event)">
+  <div class="modal" id="MOD">
+    <div class="mh">
+      <button class="mcl" onclick="closeM()">✕</button>
+      <div class="ml" id="mLogo"></div>
+      <div class="mt" id="mTitle"></div>
+      <div class="mst" id="mSub"></div>
+    </div>
+    <div class="mbody" id="mBody"></div>
+  </div>
+</div>
+
+<script>
+// scroll reveal
+const obs = new IntersectionObserver(en => {
+  en.forEach(e => { if(e.isIntersecting) e.target.classList.add('vis'); });
+}, {threshold:.07});
+document.querySelectorAll('.rev').forEach(el => obs.observe(el));
+
+// accordion
+function tog(el){
+  const was = el.classList.contains('open');
+  document.querySelectorAll('.ei.open').forEach(i => i.classList.remove('open'));
+  if(!was) el.classList.add('open');
+}
+
+// project modal data
+const projs = {
+  nexevent:{
+    logo:'🎪', bg:'#FEF3E2',
+    title:'NexEvent',
+    sub:'AI-Driven Event Management System · Final Year Project · 2025',
+    overview:'NexEvent is a full-stack AI-powered event management platform built as my final year project. Users can book vendors, auto-generate event themes from real-world inputs like colour, weather and season, and get intelligent recommendations — all in one place.',
+    features:[
+      'Auto event theme generation via LLaMA — based on colour, weather, and season inputs',
+      'Hybrid recommendation model for smart, personalised vendor suggestions',
+      'BiLSTM sentiment analysis on user feedback — 90% accuracy using Keras',
+      'Automated PDF reports: attendance, sentiment breakdown, and user reviews',
+      'Full vendor booking flow with availability management and confirmations',
+    ],
+    stack:['Python','Flask','HTML','CSS','JavaScript','Supabase','LLaMA','BiLSTM','Keras'],
+    github:'https://github.com/VaibhaviFadke',
+    live: null,
+  }
+};
+
+function openM(k){
+  const p = projs[k]; if(!p) return;
+  document.getElementById('mLogo').textContent = p.logo;
+  document.getElementById('mLogo').style.background = p.bg;
+  document.getElementById('mTitle').textContent = p.title;
+  document.getElementById('mSub').textContent = p.sub;
+  document.getElementById('mBody').innerHTML = `
+    <div class="msec"><h4>Overview</h4><p class="mtxt">${p.overview}</p></div>
+    <div class="msec"><h4>Key Features</h4><ul class="mbl">${p.features.map(f=>`<li>${f}</li>`).join('')}</ul></div>
+    <div class="msec"><h4>Tech Stack</h4><div class="mpills">${p.stack.map(s=>`<span class="mpill">${s}</span>`).join('')}</div></div>
+    <div class="mlinks">
+      ${p.github ? `<a href="${p.github}" target="_blank" class="mlink pri">View on GitHub →</a>` : ''}
+      ${p.live   ? `<a href="${p.live}"   target="_blank" class="mlink sec">Live Demo ↗</a>`     : ''}
+    </div>`;
+  document.getElementById('MB').classList.add('show');
+  document.body.style.overflow = 'hidden';
+}
+function closeM(){ document.getElementById('MB').classList.remove('show'); document.body.style.overflow=''; }
+function closeBg(e){ if(e.target === document.getElementById('MB')) closeM(); }
+document.addEventListener('keydown', e => { if(e.key==='Escape') closeM(); });
+</script>
+</body>
+</html>
